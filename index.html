@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Life Routine — Build the Habits That Drive Real Success</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Barlow:wght@300;400;500;600;700;900&family=Barlow+Condensed:wght@700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1e2a6e;
+    --green: #3dba6f;
+    --green-dark: #2ea05d;
+    --green-light: #e8f8ee;
+    --off-white: #f8f8f6;
+    --gray: #6b7280;
+    --light-gray: #e5e7eb;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Barlow', sans-serif;
+    background: #111827;
+    color: #1a1a2e;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky; top: 0; left: 0; right: 0; width: 100%; z-index: 9999;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 60px;
+    min-height: 72px;
+    background: rgba(248,248,246,0.97);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--light-gray);
+  }
+  .logo-mark {
+    display: flex; align-items: center;
+  }
+  .logo-mark img {
+    height: 60px; width: auto; display: block;
+  }
+  nav ul { list-style: none; display: flex; gap: 32px; align-items: center; }
+  nav a {
+    text-decoration: none; color: var(--navy);
+    font-weight: 500; font-size: 14px; letter-spacing: 0.03em;
+    transition: color 0.2s;
+  }
+  nav a:hover { color: var(--green); }
+  .nav-cta {
+    background: var(--navy) !important; color: #fff !important;
+    padding: 9px 22px; border-radius: 4px;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--green) !important; color: #fff !important; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: calc(100vh - 72px);
+    display: flex; align-items: center;
+    padding: 80px 60px 80px;
+    position: relative; overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background: linear-gradient(135deg, var(--off-white) 55%, var(--green-light) 100%);
+  }
+  .hero-bg::before {
+    content: '';
+    position: absolute; top: -80px; right: -80px;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(61,186,111,0.12) 0%, transparent 70%);
+  }
+  .hero-content { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .hero-label {
+    display: inline-block;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--green); border: 1.5px solid var(--green);
+    padding: 5px 14px; border-radius: 2px; margin-bottom: 24px;
+  }
+  .hero h1 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900; font-size: clamp(48px, 6vw, 80px);
+    line-height: 0.95; color: var(--navy);
+    text-transform: uppercase; letter-spacing: -0.01em;
+    margin-bottom: 24px;
+  }
+  .hero h1 em { font-style: normal; color: var(--green); }
+  .hero-sub {
+    font-family: 'Libre Baskerville', serif;
+    font-style: italic; font-size: 18px; color: var(--gray);
+    line-height: 1.6; margin-bottom: 40px; max-width: 460px;
+  }
+  .hero-author {
+    font-size: 13px; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--navy); margin-bottom: 36px;
+  }
+  .hero-author span { color: var(--green); }
+  .btn-group { display: flex; gap: 16px; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--navy); color: #fff;
+    padding: 14px 32px; font-weight: 700; font-size: 14px;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    text-decoration: none; border-radius: 4px;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--green); transform: translateY(-2px); }
+  .btn-secondary {
+    background: transparent; color: var(--navy);
+    padding: 14px 32px; font-weight: 600; font-size: 14px;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    text-decoration: none; border-radius: 4px;
+    border: 2px solid var(--navy);
+    transition: all 0.2s; display: inline-block;
+  }
+  .btn-secondary:hover { border-color: var(--green); color: var(--green); transform: translateY(-2px); }
+
+  /* Hero wheel visual */
+  .hero-visual { display: flex; align-items: center; justify-content: center; }
+  .wheel-container {
+    position: relative; width: 420px; height: 420px;
+  }
+  .wheel-svg { width: 100%; height: 100%; animation: slowSpin 60s linear infinite; }
+  .wheel-center {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+    text-align: center;
+  }
+  .wheel-center .wc-life {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900; font-size: 28px; color: var(--navy);
+    display: block; line-height: 1;
+  }
+  .wheel-center .wc-routine {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 14px; color: var(--green);
+    letter-spacing: 0.1em; text-transform: uppercase;
+    display: block;
+  }
+  @keyframes slowSpin { to { transform: rotate(360deg); } }
+
+  /* ── QUOTE BAND ── */
+  .quote-band {
+    background: var(--navy); padding: 56px 60px;
+    text-align: center;
+  }
+  .quote-band blockquote {
+    font-family: 'Libre Baskerville', serif;
+    font-size: clamp(20px, 3vw, 28px);
+    font-style: italic; color: #fff;
+    max-width: 800px; margin: 0 auto 16px;
+    line-height: 1.5;
+  }
+  .quote-band cite {
+    font-size: 13px; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--green);
+    font-style: normal;
+  }
+
+  /* ── ABOUT ── */
+  .section { padding: 100px 60px; }
+  .section-inner { max-width: 1200px; margin: 0 auto; }
+  .section-label {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--green); margin-bottom: 16px;
+  }
+  .section h2 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900; font-size: clamp(36px, 5vw, 60px);
+    text-transform: uppercase; color: var(--navy);
+    line-height: 1; margin-bottom: 32px;
+  }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .body-text {
+    font-size: 17px; line-height: 1.75; color: #3a3a4a;
+    font-family: 'Libre Baskerville', serif;
+  }
+  .body-text p + p { margin-top: 20px; }
+  .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 40px; }
+  .stat-card {
+    background: #fff; border: 1px solid var(--light-gray);
+    padding: 28px 24px; border-radius: 6px;
+    border-left: 4px solid var(--green);
+  }
+  .stat-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900; font-size: 44px; color: var(--navy);
+    line-height: 1;
+  }
+  .stat-label { font-size: 13px; font-weight: 500; color: var(--gray); margin-top: 6px; }
+
+  /* ── LIFE WHEEL SECTION ── */
+  .wheel-section { background: var(--navy); padding: 100px 60px; }
+  .wheel-section .section-label { color: var(--green); font-size: 16px; letter-spacing: 0.22em; font-weight: 800; }
+  .wheel-section h2 { color: #fff; }
+  .categories-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px; margin-top: 56px;
+  }
+  .cat-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 8px; padding: 32px 24px;
+    transition: all 0.25s; cursor: default;
+    position: relative; overflow: hidden;
+  }
+  .cat-card::before {
+    content: ''; position: absolute;
+    top: 0; left: 0; right: 0; height: 3px;
+    background: var(--green);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.3s;
+  }
+  .cat-card:hover { background: rgba(255,255,255,0.1); transform: translateY(-4px); }
+  .cat-card:hover::before { transform: scaleX(1); }
+  .cat-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900; font-size: 13px; letter-spacing: 0.12em;
+    color: var(--green); margin-bottom: 10px;
+  }
+  .cat-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900; font-size: 22px; text-transform: uppercase;
+    color: #fff; line-height: 1.1; margin-bottom: 14px;
+  }
+  .cat-desc { font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.65; }
+
+  /* ── CHAPTERS ── */
+  .chapters-section { background: #fff; padding: 100px 60px; }
+  .chapters-section h2 { color: var(--navy); }
+  .chapters-list { margin-top: 60px; }
+  .chapter-row {
+    display: grid; grid-template-columns: 80px 1fr auto;
+    align-items: start; gap: 32px;
+    padding: 36px 0;
+    border-bottom: 1px solid var(--light-gray);
+    transition: all 0.2s;
+  }
+  .chapter-row:first-child { border-top: 1px solid var(--light-gray); }
+  .chapter-row:hover { padding-left: 12px; }
+  .chap-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900; font-size: 52px; color: var(--green-light);
+    line-height: 1; color: #dde8e5;
+  }
+  .chap-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 24px; text-transform: uppercase;
+    color: var(--navy); margin-bottom: 8px;
+  }
+  .chap-desc { font-size: 15px; color: var(--gray); line-height: 1.6; max-width: 560px; }
+  .chap-tag {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--green);
+    background: var(--green-light); padding: 5px 12px;
+    border-radius: 2px; white-space: nowrap; align-self: start;
+    margin-top: 4px;
+  }
+
+  /* ── HOW IT WORKS ── */
+  .how-section { background: var(--off-white); padding: 100px 60px; }
+  .how-section h2 { color: var(--navy); }
+  .steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-top: 60px; }
+  .step {
+    background: #fff; padding: 40px 32px;
+    border-radius: 8px; border: 1px solid var(--light-gray);
+    position: relative;
+  }
+  .step-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900; font-size: 72px; color: var(--green-light);
+    position: absolute; top: 20px; right: 24px; line-height: 1;
+  }
+  .step-icon {
+    width: 48px; height: 48px; background: var(--green-light);
+    border-radius: 8px; display: flex; align-items: center; justify-content: center;
+    margin-bottom: 20px; font-size: 22px;
+  }
+  .step h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 20px; text-transform: uppercase;
+    color: var(--navy); margin-bottom: 12px;
+  }
+  .step p { font-size: 15px; color: var(--gray); line-height: 1.65; }
+
+  /* ── JOURNAL ── */
+  .journal-section { background: var(--green); padding: 100px 60px; }
+  .journal-section h2 { color: #fff; }
+  .journal-section .section-label { color: rgba(255,255,255,0.7); }
+  .journal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; margin-top: 48px; }
+  .journal-features { display: flex; flex-direction: column; gap: 24px; margin-top: 32px; }
+  .feature-item { display: flex; gap: 16px; align-items: flex-start; }
+  .feature-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: #fff; flex-shrink: 0; margin-top: 7px;
+  }
+  .feature-text h4 { font-weight: 700; font-size: 16px; color: #fff; margin-bottom: 4px; }
+  .feature-text p { font-size: 14px; color: rgba(255,255,255,0.75); line-height: 1.6; }
+  .journal-mockup {
+    background: #fff; border-radius: 12px;
+    padding: 40px; box-shadow: 0 24px 80px rgba(0,0,0,0.2);
+  }
+  .journal-mockup h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900; font-size: 28px; text-transform: uppercase;
+    color: var(--navy); margin-bottom: 8px;
+  }
+  .journal-mockup .jm-sub { font-size: 13px; color: var(--gray); margin-bottom: 24px; }
+  .wheel-preview {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 20px;
+  }
+  .wheel-segment {
+    background: var(--green-light); border-radius: 4px;
+    padding: 10px 8px; text-align: center; font-size: 10px;
+    font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;
+    color: var(--navy);
+  }
+  .btn-green {
+    background: var(--navy); color: #fff;
+    padding: 12px 28px; font-weight: 700; font-size: 13px;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    text-decoration: none; border-radius: 4px;
+    transition: all 0.2s; display: inline-block;
+  }
+  .btn-green:hover { background: var(--green-dark); transform: translateY(-2px); }
+
+  /* ── AUTHOR ── */
+  .author-section { background: #fff; padding: 100px 60px; }
+  .author-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 80px; align-items: center; }
+  .author-visual {
+    aspect-ratio: 1; background: var(--green-light);
+    border-radius: 12px; display: flex; align-items: center; justify-content: center;
+    font-size: 80px;
+  }
+  .author-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900; font-size: 40px; text-transform: uppercase;
+    color: var(--navy); margin-bottom: 8px;
+  }
+  .author-title { font-size: 14px; color: var(--green); font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 24px; }
+
+  /* ── CTA ── */
+  .cta-section {
+    background: var(--navy); padding: 100px 60px;
+    text-align: center; position: relative; overflow: hidden;
+  }
+  .cta-section::before {
+    content: '';
+    position: absolute; top: -200px; left: 50%; transform: translateX(-50%);
+    width: 800px; height: 800px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(61,186,111,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .cta-section h2 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900; font-size: clamp(40px, 6vw, 72px);
+    text-transform: uppercase; color: #fff;
+    max-width: 800px; margin: 0 auto 24px;
+    line-height: 1;
+  }
+  .cta-section h2 em { font-style: normal; color: var(--green); }
+  .cta-section p {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 18px; font-style: italic; color: rgba(255,255,255,0.7);
+    max-width: 520px; margin: 0 auto 40px; line-height: 1.6;
+  }
+  .cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .btn-white {
+    background: #fff; color: var(--navy);
+    padding: 16px 40px; font-weight: 700; font-size: 14px;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    text-decoration: none; border-radius: 4px;
+    transition: all 0.2s; display: inline-block;
+  }
+  .btn-white:hover { background: var(--green); color: #fff; transform: translateY(-2px); }
+  .btn-outline-white {
+    background: transparent; color: #fff;
+    padding: 16px 40px; font-weight: 600; font-size: 14px;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    text-decoration: none; border-radius: 4px;
+    border: 2px solid rgba(255,255,255,0.4);
+    transition: all 0.2s; display: inline-block;
+  }
+  .btn-outline-white:hover { border-color: var(--green); color: var(--green); transform: translateY(-2px); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #f0f1f0; padding: 28px 60px;
+    display: grid; grid-template-columns: auto 1fr;
+    align-items: center; gap: 24px;
+    border-top: 1px solid var(--light-gray);
+  }
+  .footer-logo-wrap { display: flex; align-items: center; }
+  .footer-copy { text-align: center; }
+  footer .footer-logo .life { color: var(--navy); font-size: 18px; }
+  footer .footer-logo .routine { color: var(--green); }
+  footer p { font-size: 13px; color: var(--gray); margin: 0; }
+  footer nav ul { display: flex; list-style: none; margin: 0; padding: 0; gap: 24px; }
+  footer nav a { color: var(--gray); font-size: 13px; }
+  footer nav a:hover { color: var(--green); }
+
+  .hero-logo-big { }
+  /* ── ANIMATIONS ── */
+  .fade-up {
+    opacity: 0; transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+  /* Hero elements animate in immediately on load */
+  .hero .fade-up {
+    animation: heroFadeUp 0.7s ease forwards;
+  }
+  .hero .fade-up:nth-child(1) { animation-delay: 0.1s; }
+  .hero .fade-up:nth-child(2) { animation-delay: 0.2s; }
+  .hero .fade-up:nth-child(3) { animation-delay: 0.35s; }
+  .hero .fade-up:nth-child(4) { animation-delay: 0.5s; }
+  .hero .fade-up:nth-child(5) { animation-delay: 0.6s; }
+  .hero-visual.fade-up { animation: heroFadeUp 0.9s ease 0.3s forwards; }
+
+  @keyframes heroFadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 900px) {
+    nav { padding: 14px 24px; }
+    nav ul { display: none; }
+    .hero, .section, .wheel-section, .chapters-section, .how-section, .journal-section, .author-section, .cta-section { padding: 80px 24px; }
+    .hero-content, .two-col, .journal-grid, .author-grid { grid-template-columns: 1fr; gap: 48px; }
+    .hero-visual { display: none; }
+    .categories-grid { grid-template-columns: repeat(2, 1fr); }
+    .steps-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 24px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo-mark">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="45 45 315 485" height="60" style="display:block;"><g><g><path fill="#2E3192" d="M128.938,458.266c0.634,0.555,1.15,1.547,1.547,2.976h1.904v-21.009h-1.904c-0.396,1.429-0.913,2.421-1.547,2.976c-0.636,0.557-1.568,0.833-2.798,0.833H76.208v-61.598c0-1.229,0.277-2.172,0.833-2.827c0.555-0.654,1.548-1.16,2.976-1.518v-1.904H54.663v1.904c1.429,0.397,2.42,0.913,2.976,1.548s0.834,1.567,0.834,2.797v68.74c0,1.23-0.278,2.163-0.834,2.797c-0.556,0.635-1.547,1.151-2.976,1.548v1.904h71.478C127.37,457.433,128.303,457.711,128.938,458.266z"/><path fill="#2E3192" d="M166.254,455.529c-1.39-0.357-2.371-0.863-2.946-1.518c-0.575-0.655-0.862-1.597-0.862-2.827v-68.8c0-1.19,0.277-2.112,0.833-2.768c0.555-0.654,1.547-1.16,2.976-1.518v-1.904H140.9v1.904c1.429,0.397,2.42,0.913,2.976,1.548s0.834,1.547,0.834,2.737v68.8c0,1.23-0.278,2.163-0.834,2.797c-0.556,0.635-1.547,1.151-2.976,1.548v1.904h25.354V455.529z"/><path fill="#2E3192" d="M258.919,372.386h-1.904c-0.397,1.445-0.913,2.441-1.548,2.988s-1.547,0.82-2.737,0.82h-71.895v1.904c1.429,0.397,2.42,0.913,2.976,1.548s0.834,1.567,0.834,2.797v68.74c0,1.23-0.278,2.163-0.834,2.797c-0.556,0.635-1.547,1.151-2.976,1.548v1.904h25.354v-1.904c-1.39-0.357-2.371-0.863-2.946-1.518c-0.575-0.655-0.862-1.597-0.862-2.827v-29.281h32.911c1.229,0,2.162,0.282,2.798,0.846c0.634,0.564,1.15,1.552,1.547,2.963h1.904v-20.533h-1.904c-0.396,1.407-0.913,2.395-1.547,2.96c-0.636,0.566-1.568,0.85-2.798,0.85H202.38v-19.402h50.35c1.19,0,2.103,0.272,2.737,0.816s1.15,1.542,1.548,2.993h1.904V372.386z"/><path fill="#2E3192" d="M347.597,440.233c-0.397,1.429-0.914,2.421-1.548,2.976c-0.635,0.557-1.548,0.833-2.737,0.833h-52.255v-22.258h32.972c1.19,0,2.103,0.288,2.737,0.862c0.635,0.576,1.15,1.558,1.548,2.946h1.904V405.06h-1.904c-0.397,1.428-0.913,2.42-1.548,2.976s-1.547,0.833-2.737,0.833h-32.972v-19.283h50.826c1.19,0,2.103,0.283,2.737,0.847c0.635,0.564,1.15,1.552,1.548,2.963h1.904v-21.009h-1.904c-0.397,1.406-0.913,2.394-1.548,2.96s-1.547,0.849-2.737,0.849h-72.37v1.904c1.428,0.397,2.42,0.913,2.976,1.548c0.555,0.635,0.833,1.567,0.833,2.797v68.74c0,1.23-0.278,2.163-0.833,2.797c-0.556,0.635-1.548,1.151-2.976,1.548v1.904h73.799c1.189,0,2.103,0.277,2.737,0.833c0.634,0.555,1.15,1.547,1.548,2.976h1.904v-21.009H347.597z"/><path fill="#2E3192" d="M91.961,513.065l-7.625-10.848c7.117-1.094,10.676-4.844,10.676-11.251c0-1.88-0.355-3.645-1.065-5.295c-0.748-1.707-1.88-3.06-3.396-4.057c-1.305-0.863-2.834-1.468-4.589-1.813c-1.756-0.345-4.129-0.518-7.122-0.518H54.267v0.921c0.69,0.191,1.17,0.441,1.438,0.748s0.403,0.758,0.403,1.353v33.263c0,0.576-0.135,1.018-0.403,1.324s-0.748,0.557-1.438,0.748v0.921h12.258v-0.921c-0.672-0.173-1.146-0.417-1.424-0.733c-0.278-0.317-0.418-0.763-0.418-1.339v-13.034h10.485l7.954,11.567c0.9,1.323,1.351,2.158,1.351,2.503c0,0.537-0.488,0.883-1.465,1.036v0.921h14.19v-0.921c-0.902-0.058-1.664-0.359-2.288-0.906C94.287,516.187,93.304,514.965,91.961,513.065z M82.063,495.886c-0.806,0.115-2.187,0.173-4.144,0.173H64.683v-10.301h13.236c1.995,0,3.381,0.053,4.158,0.158s1.511,0.35,2.201,0.733c1.458,0.787,2.187,2.206,2.187,4.259s-0.729,3.472-2.187,4.259C83.606,495.532,82.868,495.771,82.063,495.886z"/><path fill="#2E3192" d="M122.765,478.594c-9.138,0.115-15.635,3.29-19.493,9.524c-2.016,3.261-3.023,6.857-3.023,10.79c0,2.686,0.489,5.247,1.469,7.683c1.113,2.763,2.745,5.132,4.895,7.107c4.012,3.702,9.415,5.554,16.211,5.554c9.06,0,15.576-3.185,19.55-9.554c2.035-3.261,3.052-6.771,3.052-10.531c0-6.138-2.121-11.145-6.362-15.021C135.049,480.445,129.617,478.594,122.765,478.594z M135.64,504.384c-0.787,1.916-1.92,3.536-3.398,4.858c-2.478,2.223-5.607,3.334-9.391,3.334s-6.923-1.111-9.419-3.334c-2.958-2.625-4.436-6.065-4.436-10.319s1.478-7.693,4.436-10.319c2.496-2.223,5.617-3.334,9.361-3.334c3.783,0.038,6.933,1.149,9.448,3.334c2.957,2.549,4.436,6.046,4.436,10.492C136.677,500.916,136.331,502.678,135.64,504.384z"/><path fill="#2E3192" d="M181.824,480.205c0.69,0.191,1.17,0.441,1.438,0.748s0.403,0.758,0.403,1.353V501.9c0,2.265-0.125,3.938-0.374,5.021c-0.25,1.084-0.71,1.99-1.382,2.72c-1.842,1.956-4.997,2.935-9.467,2.935c-4.45,0-7.597-0.979-9.438-2.935c-0.691-0.729-1.161-1.636-1.41-2.72c-0.25-1.083-0.374-2.757-0.374-5.021v-19.595c0-0.595,0.137-1.051,0.41-1.367s0.751-0.561,1.432-0.733v-0.921h-12.259v0.921c0.691,0.191,1.17,0.441,1.439,0.748c0.269,0.307,0.402,0.758,0.402,1.353v22.013c0,2.762,0.364,5.141,1.094,7.136c0.748,2.014,2.091,3.606,4.028,4.776c3.318,2.015,8.104,3.021,14.358,3.021c8.651,0,14.358-1.86,17.121-5.582c1.534-2.072,2.302-5.189,2.302-9.352v-22.013c0-0.595,0.134-1.046,0.403-1.353c0.268-0.307,0.748-0.557,1.438-0.748v-0.921h-11.567V480.205z"/><path fill="#2E3192" d="M233.819,478.887c-0.307,0.265-0.758,0.396-1.353,0.396h-32.946c-0.575,0-1.013-0.132-1.31-0.396c-0.298-0.265-0.552-0.746-0.763-1.445h-0.921v10.157h0.921c0.191-0.701,0.441-1.184,0.748-1.446c0.307-0.264,0.749-0.395,1.324-0.395h12.2v29.781c0,0.595-0.135,1.046-0.402,1.353c-0.27,0.307-0.749,0.557-1.439,0.748v0.921h12.258v-0.921c-0.69-0.191-1.17-0.441-1.438-0.748s-0.402-0.758-0.402-1.353v-29.781h12.171c0.595,0,1.046,0.131,1.353,0.395c0.307,0.263,0.557,0.745,0.748,1.446h0.921v-10.157h-0.921C234.376,478.141,234.126,478.623,233.819,478.887z"/><path fill="#2E3192" d="M239.401,480.205c0.691,0.191,1.17,0.441,1.439,0.748c0.269,0.307,0.402,0.748,0.402,1.323v33.264c0,0.595-0.134,1.046-0.402,1.353c-0.27,0.307-0.748,0.557-1.439,0.748v0.921h12.259v-0.921c-0.672-0.173-1.146-0.417-1.425-0.733c-0.278-0.317-0.417-0.772-0.417-1.367v-33.264c0-0.575,0.134-1.021,0.402-1.338s0.748-0.561,1.439-0.733v-0.921h-12.259V480.205z"/><path fill="#2E3192" d="M291.455,480.205c0.69,0.191,1.17,0.441,1.438,0.748s0.403,0.748,0.403,1.323v23.308l-21.668-22.53c-0.537-0.557-0.806-1.064-0.806-1.525c0-0.671,0.412-1.112,1.237-1.323v-0.921h-13.352v0.921c0.691,0.191,1.17,0.441,1.439,0.748c0.269,0.307,0.402,0.748,0.402,1.323v33.264c0,0.595-0.134,1.046-0.402,1.353c-0.27,0.307-0.748,0.557-1.439,0.748v0.921h11.539v-0.921c-0.69-0.191-1.17-0.441-1.438-0.748c-0.27-0.307-0.403-0.758-0.403-1.353v-23.883l22.013,22.731c0.939,0.96,1.41,1.631,1.41,2.015c0,0.652-0.403,1.064-1.209,1.237v0.921h12.373v-0.921c-0.69-0.191-1.17-0.441-1.438-0.748s-0.402-0.758-0.402-1.353v-33.264c0-0.575,0.134-1.017,0.402-1.323s0.748-0.557,1.438-0.748v-0.921h-11.538V480.205z"/><path fill="#2E3192" d="M347.076,511.684c-0.308,0.269-0.748,0.402-1.324,0.402h-25.264v-10.762h15.941c0.575,0,1.017,0.14,1.323,0.417c0.307,0.278,0.557,0.754,0.748,1.425h0.921v-9.928h-0.921c-0.191,0.691-0.441,1.171-0.748,1.439s-0.748,0.402-1.323,0.402h-15.941v-9.322h24.573c0.576,0,1.017,0.136,1.324,0.408c0.307,0.273,0.556,0.751,0.748,1.433h0.921v-10.157h-0.921c-0.192,0.681-0.441,1.157-0.748,1.432c-0.308,0.273-0.748,0.41-1.324,0.41h-34.989v0.921c0.69,0.191,1.17,0.441,1.438,0.748s0.402,0.758,0.402,1.353v33.234c0,0.595-0.134,1.046-0.402,1.353s-0.748,0.557-1.438,0.748v0.921h35.68c0.576,0,1.017,0.134,1.324,0.402c0.307,0.269,0.556,0.748,0.748,1.439h0.921v-10.158h-0.921C347.632,510.935,347.383,511.416,347.076,511.684z"/></g><polygon fill="#2E3192" points="302.728,54.665 171.543,54.665 133.383,54.665 124.455,54.665 124.455,282.041 171.543,282.041 171.543,101.753 302.728,101.753 302.728,178.721 196.096,178.721 196.096,225.737 302.728,225.737 302.728,349.721 349.743,349.721 349.743,227.681 324.327,202.265 349.743,176.777 349.743,101.753 349.743,54.665 "/><polygon fill="#00A651" points="232.959,247.481 232.959,302.633 101.775,302.633 101.775,54.665 54.759,54.665 54.759,302.633 54.759,349.721 101.775,349.721 232.959,349.721 272.991,349.721 280.047,349.721 280.047,247.481 "/></g></svg>
+  </div>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#wheel">The Wheel</a></li>
+    <li><a href="#chapters">Chapters</a></li>
+    <li><a href="#journal">Journal</a></li>
+    <li><a href="mailto:kristen@liferoutine.org">Contact</a></li>
+    <li><a href="#cta" class="nav-cta">Get the Book</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div>
+      <div class="hero-logo-big fade-up"><svg xmlns="http://www.w3.org/2000/svg" viewBox="45 45 315 485" height="110" style="display:block;margin-bottom:28px;"><g><g><path fill="#2E3192" d="M128.938,458.266c0.634,0.555,1.15,1.547,1.547,2.976h1.904v-21.009h-1.904c-0.396,1.429-0.913,2.421-1.547,2.976c-0.636,0.557-1.568,0.833-2.798,0.833H76.208v-61.598c0-1.229,0.277-2.172,0.833-2.827c0.555-0.654,1.548-1.16,2.976-1.518v-1.904H54.663v1.904c1.429,0.397,2.42,0.913,2.976,1.548s0.834,1.567,0.834,2.797v68.74c0,1.23-0.278,2.163-0.834,2.797c-0.556,0.635-1.547,1.151-2.976,1.548v1.904h71.478C127.37,457.433,128.303,457.711,128.938,458.266z"/><path fill="#2E3192" d="M166.254,455.529c-1.39-0.357-2.371-0.863-2.946-1.518c-0.575-0.655-0.862-1.597-0.862-2.827v-68.8c0-1.19,0.277-2.112,0.833-2.768c0.555-0.654,1.547-1.16,2.976-1.518v-1.904H140.9v1.904c1.429,0.397,2.42,0.913,2.976,1.548s0.834,1.547,0.834,2.737v68.8c0,1.23-0.278,2.163-0.834,2.797c-0.556,0.635-1.547,1.151-2.976,1.548v1.904h25.354V455.529z"/><path fill="#2E3192" d="M258.919,372.386h-1.904c-0.397,1.445-0.913,2.441-1.548,2.988s-1.547,0.82-2.737,0.82h-71.895v1.904c1.429,0.397,2.42,0.913,2.976,1.548s0.834,1.567,0.834,2.797v68.74c0,1.23-0.278,2.163-0.834,2.797c-0.556,0.635-1.547,1.151-2.976,1.548v1.904h25.354v-1.904c-1.39-0.357-2.371-0.863-2.946-1.518c-0.575-0.655-0.862-1.597-0.862-2.827v-29.281h32.911c1.229,0,2.162,0.282,2.798,0.846c0.634,0.564,1.15,1.552,1.547,2.963h1.904v-20.533h-1.904c-0.396,1.407-0.913,2.395-1.547,2.96c-0.636,0.566-1.568,0.85-2.798,0.85H202.38v-19.402h50.35c1.19,0,2.103,0.272,2.737,0.816s1.15,1.542,1.548,2.993h1.904V372.386z"/><path fill="#2E3192" d="M347.597,440.233c-0.397,1.429-0.914,2.421-1.548,2.976c-0.635,0.557-1.548,0.833-2.737,0.833h-52.255v-22.258h32.972c1.19,0,2.103,0.288,2.737,0.862c0.635,0.576,1.15,1.558,1.548,2.946h1.904V405.06h-1.904c-0.397,1.428-0.913,2.42-1.548,2.976s-1.547,0.833-2.737,0.833h-32.972v-19.283h50.826c1.19,0,2.103,0.283,2.737,0.847c0.635,0.564,1.15,1.552,1.548,2.963h1.904v-21.009h-1.904c-0.397,1.406-0.913,2.394-1.548,2.96s-1.547,0.849-2.737,0.849h-72.37v1.904c1.428,0.397,2.42,0.913,2.976,1.548c0.555,0.635,0.833,1.567,0.833,2.797v68.74c0,1.23-0.278,2.163-0.833,2.797c-0.556,0.635-1.548,1.151-2.976,1.548v1.904h73.799c1.189,0,2.103,0.277,2.737,0.833c0.634,0.555,1.15,1.547,1.548,2.976h1.904v-21.009H347.597z"/><path fill="#2E3192" d="M91.961,513.065l-7.625-10.848c7.117-1.094,10.676-4.844,10.676-11.251c0-1.88-0.355-3.645-1.065-5.295c-0.748-1.707-1.88-3.06-3.396-4.057c-1.305-0.863-2.834-1.468-4.589-1.813c-1.756-0.345-4.129-0.518-7.122-0.518H54.267v0.921c0.69,0.191,1.17,0.441,1.438,0.748s0.403,0.758,0.403,1.353v33.263c0,0.576-0.135,1.018-0.403,1.324s-0.748,0.557-1.438,0.748v0.921h12.258v-0.921c-0.672-0.173-1.146-0.417-1.424-0.733c-0.278-0.317-0.418-0.763-0.418-1.339v-13.034h10.485l7.954,11.567c0.9,1.323,1.351,2.158,1.351,2.503c0,0.537-0.488,0.883-1.465,1.036v0.921h14.19v-0.921c-0.902-0.058-1.664-0.359-2.288-0.906C94.287,516.187,93.304,514.965,91.961,513.065z M82.063,495.886c-0.806,0.115-2.187,0.173-4.144,0.173H64.683v-10.301h13.236c1.995,0,3.381,0.053,4.158,0.158s1.511,0.35,2.201,0.733c1.458,0.787,2.187,2.206,2.187,4.259s-0.729,3.472-2.187,4.259C83.606,495.532,82.868,495.771,82.063,495.886z"/><path fill="#2E3192" d="M122.765,478.594c-9.138,0.115-15.635,3.29-19.493,9.524c-2.016,3.261-3.023,6.857-3.023,10.79c0,2.686,0.489,5.247,1.469,7.683c1.113,2.763,2.745,5.132,4.895,7.107c4.012,3.702,9.415,5.554,16.211,5.554c9.06,0,15.576-3.185,19.55-9.554c2.035-3.261,3.052-6.771,3.052-10.531c0-6.138-2.121-11.145-6.362-15.021C135.049,480.445,129.617,478.594,122.765,478.594z M135.64,504.384c-0.787,1.916-1.92,3.536-3.398,4.858c-2.478,2.223-5.607,3.334-9.391,3.334s-6.923-1.111-9.419-3.334c-2.958-2.625-4.436-6.065-4.436-10.319s1.478-7.693,4.436-10.319c2.496-2.223,5.617-3.334,9.361-3.334c3.783,0.038,6.933,1.149,9.448,3.334c2.957,2.549,4.436,6.046,4.436,10.492C136.677,500.916,136.331,502.678,135.64,504.384z"/><path fill="#2E3192" d="M181.824,480.205c0.69,0.191,1.17,0.441,1.438,0.748s0.403,0.758,0.403,1.353V501.9c0,2.265-0.125,3.938-0.374,5.021c-0.25,1.084-0.71,1.99-1.382,2.72c-1.842,1.956-4.997,2.935-9.467,2.935c-4.45,0-7.597-0.979-9.438-2.935c-0.691-0.729-1.161-1.636-1.41-2.72c-0.25-1.083-0.374-2.757-0.374-5.021v-19.595c0-0.595,0.137-1.051,0.41-1.367s0.751-0.561,1.432-0.733v-0.921h-12.259v0.921c0.691,0.191,1.17,0.441,1.439,0.748c0.269,0.307,0.402,0.758,0.402,1.353v22.013c0,2.762,0.364,5.141,1.094,7.136c0.748,2.014,2.091,3.606,4.028,4.776c3.318,2.015,8.104,3.021,14.358,3.021c8.651,0,14.358-1.86,17.121-5.582c1.534-2.072,2.302-5.189,2.302-9.352v-22.013c0-0.595,0.134-1.046,0.403-1.353c0.268-0.307,0.748-0.557,1.438-0.748v-0.921h-11.567V480.205z"/><path fill="#2E3192" d="M233.819,478.887c-0.307,0.265-0.758,0.396-1.353,0.396h-32.946c-0.575,0-1.013-0.132-1.31-0.396c-0.298-0.265-0.552-0.746-0.763-1.445h-0.921v10.157h0.921c0.191-0.701,0.441-1.184,0.748-1.446c0.307-0.264,0.749-0.395,1.324-0.395h12.2v29.781c0,0.595-0.135,1.046-0.402,1.353c-0.27,0.307-0.749,0.557-1.439,0.748v0.921h12.258v-0.921c-0.69-0.191-1.17-0.441-1.438-0.748s-0.402-0.758-0.402-1.353v-29.781h12.171c0.595,0,1.046,0.131,1.353,0.395c0.307,0.263,0.557,0.745,0.748,1.446h0.921v-10.157h-0.921C234.376,478.141,234.126,478.623,233.819,478.887z"/><path fill="#2E3192" d="M239.401,480.205c0.691,0.191,1.17,0.441,1.439,0.748c0.269,0.307,0.402,0.748,0.402,1.323v33.264c0,0.595-0.134,1.046-0.402,1.353c-0.27,0.307-0.748,0.557-1.439,0.748v0.921h12.259v-0.921c-0.672-0.173-1.146-0.417-1.425-0.733c-0.278-0.317-0.417-0.772-0.417-1.367v-33.264c0-0.575,0.134-1.021,0.402-1.338s0.748-0.561,1.439-0.733v-0.921h-12.259V480.205z"/><path fill="#2E3192" d="M291.455,480.205c0.69,0.191,1.17,0.441,1.438,0.748s0.403,0.748,0.403,1.323v23.308l-21.668-22.53c-0.537-0.557-0.806-1.064-0.806-1.525c0-0.671,0.412-1.112,1.237-1.323v-0.921h-13.352v0.921c0.691,0.191,1.17,0.441,1.439,0.748c0.269,0.307,0.402,0.748,0.402,1.323v33.264c0,0.595-0.134,1.046-0.402,1.353c-0.27,0.307-0.748,0.557-1.439,0.748v0.921h11.539v-0.921c-0.69-0.191-1.17-0.441-1.438-0.748c-0.27-0.307-0.403-0.758-0.403-1.353v-23.883l22.013,22.731c0.939,0.96,1.41,1.631,1.41,2.015c0,0.652-0.403,1.064-1.209,1.237v0.921h12.373v-0.921c-0.69-0.191-1.17-0.441-1.438-0.748s-0.402-0.758-0.402-1.353v-33.264c0-0.575,0.134-1.017,0.402-1.323s0.748-0.557,1.438-0.748v-0.921h-11.538V480.205z"/><path fill="#2E3192" d="M347.076,511.684c-0.308,0.269-0.748,0.402-1.324,0.402h-25.264v-10.762h15.941c0.575,0,1.017,0.14,1.323,0.417c0.307,0.278,0.557,0.754,0.748,1.425h0.921v-9.928h-0.921c-0.191,0.691-0.441,1.171-0.748,1.439s-0.748,0.402-1.323,0.402h-15.941v-9.322h24.573c0.576,0,1.017,0.136,1.324,0.408c0.307,0.273,0.556,0.751,0.748,1.433h0.921v-10.157h-0.921c-0.192,0.681-0.441,1.157-0.748,1.432c-0.308,0.273-0.748,0.41-1.324,0.41h-34.989v0.921c0.69,0.191,1.17,0.441,1.438,0.748s0.402,0.758,0.402,1.353v33.234c0,0.595-0.134,1.046-0.402,1.353s-0.748,0.557-1.438,0.748v0.921h35.68c0.576,0,1.017,0.134,1.324,0.402c0.307,0.269,0.556,0.748,0.748,1.439h0.921v-10.158h-0.921C347.632,510.935,347.383,511.416,347.076,511.684z"/></g><polygon fill="#2E3192" points="302.728,54.665 171.543,54.665 133.383,54.665 124.455,54.665 124.455,282.041 171.543,282.041 171.543,101.753 302.728,101.753 302.728,178.721 196.096,178.721 196.096,225.737 302.728,225.737 302.728,349.721 349.743,349.721 349.743,227.681 324.327,202.265 349.743,176.777 349.743,101.753 349.743,54.665 "/><polygon fill="#00A651" points="232.959,247.481 232.959,302.633 101.775,302.633 101.775,54.665 54.759,54.665 54.759,302.633 54.759,349.721 101.775,349.721 232.959,349.721 272.991,349.721 280.047,349.721 280.047,247.481 "/></g></svg></div>
+    <span class="hero-label fade-up">A Young Adult's Playbook</span>
+      <h1 class="fade-up">Build the<br><em>Habits</em><br>That Drive<br>Real Success</h1>
+      <p class="hero-sub fade-up">Motivation is unreliable. Systems always win. Life Routine gives you a straightforward, no-fluff framework for building daily habits across all eight areas of your life.</p>
+      <p class="hero-author fade-up">By <span>Kristen M. Gough</span></p>
+      <div class="btn-group fade-up">
+        <a href="#cta" class="btn-primary">Get the Book</a>
+        <a href="#journal" class="btn-secondary">Get the Journal</a>
+      </div>
+    </div>
+    <div class="hero-visual fade-up">
+      <div class="wheel-container">
+        <svg class="wheel-svg" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Outer circle rings -->
+          <circle cx="200" cy="200" r="185" stroke="#1e2a6e" stroke-width="1.5" stroke-dasharray="4 4" opacity="0.15"/>
+          <circle cx="200" cy="200" r="155" stroke="#1e2a6e" stroke-width="1" opacity="0.1"/>
+          <circle cx="200" cy="200" r="120" stroke="#1e2a6e" stroke-width="1" opacity="0.1"/>
+          <circle cx="200" cy="200" r="85" stroke="#1e2a6e" stroke-width="1" opacity="0.1"/>
+          <circle cx="200" cy="200" r="50" stroke="#1e2a6e" stroke-width="1" opacity="0.1"/>
+
+          <!-- Spokes (8 directions) -->
+          <line x1="200" y1="15" x2="200" y2="385" stroke="#1e2a6e" stroke-width="1" opacity="0.12"/>
+          <line x1="15" y1="200" x2="385" y2="200" stroke="#1e2a6e" stroke-width="1" opacity="0.12"/>
+          <line x1="69" y1="69" x2="331" y2="331" stroke="#1e2a6e" stroke-width="1" opacity="0.12"/>
+          <line x1="331" y1="69" x2="69" y2="331" stroke="#1e2a6e" stroke-width="1" opacity="0.12"/>
+
+          <!-- Category labels -->
+          <text x="200" y="12" text-anchor="middle" font-family="Barlow Condensed" font-weight="700" font-size="11" fill="#1e2a6e" letter-spacing="1" opacity="0.7">HEALTH</text>
+          <text x="388" y="197" text-anchor="middle" font-family="Barlow Condensed" font-weight="700" font-size="11" fill="#1e2a6e" letter-spacing="1" opacity="0.7" transform="rotate(90 388 197)">SOCIAL</text>
+          <text x="200" y="397" text-anchor="middle" font-family="Barlow Condensed" font-weight="700" font-size="11" fill="#1e2a6e" letter-spacing="1" opacity="0.7">FINANCE</text>
+          <text x="12" y="204" text-anchor="middle" font-family="Barlow Condensed" font-weight="700" font-size="11" fill="#1e2a6e" letter-spacing="1" opacity="0.7" transform="rotate(-90 12 204)">HOUSEHOLD</text>
+          <text x="336" y="62" text-anchor="middle" font-family="Barlow Condensed" font-weight="700" font-size="10" fill="#3dba6f" letter-spacing="1" transform="rotate(45 336 62)">LOVE &amp; FAMILY</text>
+          <text x="342" y="344" text-anchor="middle" font-family="Barlow Condensed" font-weight="700" font-size="10" fill="#3dba6f" letter-spacing="1" transform="rotate(-45 342 344)">CREATIVITY</text>
+          <text x="58" y="344" text-anchor="middle" font-family="Barlow Condensed" font-weight="700" font-size="10" fill="#3dba6f" letter-spacing="1" transform="rotate(45 58 344)">SPIRITUALITY</text>
+          <text x="65" y="65" text-anchor="middle" font-family="Barlow Condensed" font-weight="700" font-size="10" fill="#3dba6f" letter-spacing="1" transform="rotate(-45 65 65)">PROFESSIONAL</text>
+
+          <!-- Filled segments to show example scores -->
+          <path d="M200,200 L200,80 A120,120 0 0,1 284.8,115.1 Z" fill="#3dba6f" opacity="0.18"/>
+          <path d="M200,200 L284.8,115.1 A120,120 0 0,1 320,200 Z" fill="#1e2a6e" opacity="0.15"/>
+          <path d="M200,200 L320,200 A120,120 0 0,1 284.8,284.8 Z" fill="#3dba6f" opacity="0.22"/>
+          <path d="M200,200 L284.8,284.8 A120,120 0 0,1 200,320 Z" fill="#1e2a6e" opacity="0.12"/>
+          <path d="M200,200 L200,320 A120,120 0 0,1 115.1,284.8 Z" fill="#3dba6f" opacity="0.2"/>
+          <path d="M200,200 L115.1,284.8 A120,120 0 0,1 80,200 Z" fill="#1e2a6e" opacity="0.18"/>
+          <path d="M200,200 L80,200 A120,120 0 0,1 115.1,115.1 Z" fill="#3dba6f" opacity="0.15"/>
+          <path d="M200,200 L115.1,115.1 A120,120 0 0,1 200,80 Z" fill="#1e2a6e" opacity="0.2"/>
+
+          <!-- Center -->
+          <circle cx="200" cy="200" r="36" fill="white"/>
+          <circle cx="200" cy="200" r="34" stroke="#1e2a6e" stroke-width="1.5" opacity="0.3"/>
+        </svg>
+        <div class="wheel-center">
+          <span class="wc-life">LIFE</span>
+          <span class="wc-routine">ROUTINE</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<div class="quote-band">
+  <blockquote>"Motivation gets you started. Routine keeps you going. One is a feeling. The other is a system. And systems always win in the long run."</blockquote>
+  <cite>— Life Routine, Introduction</cite>
+</div>
+
+<!-- ABOUT -->
+<section class="section" id="about">
+  <div class="section-inner two-col">
+    <div class="fade-up">
+      <p class="section-label">About the Book</p>
+      <h2 style="color: var(--green);">No Fluff.<br>Just Results.</h2>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-num">8</div>
+          <div class="stat-label">Life Categories Covered</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">30</div>
+          <div class="stat-label">Day Challenges Per Chapter</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">18–35</div>
+          <div class="stat-label">Target Audience (Age)</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">1</div>
+          <div class="stat-label">Habit at a Time. Always.</div>
+        </div>
+      </div>
+    </div>
+    <div class="fade-up body-text" style="color: #ffffff;">
+      <p>Most self-help books for young adults are full of inspiration but short on specifics. <em>Life Routine</em> is different. It gives you a straightforward, no-fluff framework for building daily habits across the eight areas of life that actually matter.</p>
+      <p>Using the <strong>Life Routine Wheel</strong> as your map, each chapter tackles one area head-on: what it means, why it matters for young adults specifically, and exactly what you can start doing tomorrow to improve it.</p>
+      <p>This book is for young adults who feel like they're grinding but not growing. People who are ambitious but scattered. Anyone who knows what they should be doing but can't seem to build the habits to actually do it.</p>
+      <p>Success isn't one big breakthrough. It's the accumulation of small, intentional daily actions across every important area of your life. Take the first step—start building your Life Routine today.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHEEL -->
+<section class="wheel-section" id="wheel">
+  <div class="section-inner">
+    <p class="section-label fade-up">The Life Routine Wheel</p>
+    <h2 class="fade-up" style="color:#fff">Eight Areas.<br>One System.</h2>
+    <div class="categories-grid">
+      <div class="cat-card fade-up">
+        <div class="cat-num">01 — Foundation</div>
+        <div class="cat-title">Health</div>
+        <div class="cat-desc">Sleep, movement, nutrition, and energy management. The engine on which everything else runs. When it's neglected, every other area costs more.</div>
+      </div>
+      <div class="cat-card fade-up">
+        <div class="cat-num">02 — Career</div>
+        <div class="cat-title">Professional</div>
+        <div class="cat-desc">Career clarity, daily work habits, skill-building, and knowing the difference between being busy and actually moving forward.</div>
+      </div>
+      <div class="cat-card fade-up">
+        <div class="cat-num">03 — Money</div>
+        <div class="cat-title">Finance</div>
+        <div class="cat-desc">Budgeting, savings routines, debt management, and the money mindset that separates people who build security from those who feel perpetually behind.</div>
+      </div>
+      <div class="cat-card fade-up">
+        <div class="cat-num">04 — Environment</div>
+        <div class="cat-title">Household</div>
+        <div class="cat-desc">Systems that make your home a restorative, functional environment rather than a source of low-grade daily friction and stress.</div>
+      </div>
+      <div class="cat-card fade-up">
+        <div class="cat-num">05 — Community</div>
+        <div class="cat-title">Social / Friendships</div>
+        <div class="cat-desc">Intentional maintenance of real friendships in an era where it's never been easier to feel connected and never more common to feel genuinely alone.</div>
+      </div>
+      <div class="cat-card fade-up">
+        <div class="cat-num">06 — Connection</div>
+        <div class="cat-title">Love & Family</div>
+        <div class="cat-desc">Your most intimate relationships — romantic and familial — and the daily habits that keep them honest, healthy, and genuinely sustaining.</div>
+      </div>
+      <div class="cat-card fade-up">
+        <div class="cat-num">07 — Expression</div>
+        <div class="cat-title">Creativity</div>
+        <div class="cat-desc">The practice of making things and maintaining the playful, generative part of yourself that most people slowly abandon in the name of being a responsible adult.</div>
+      </div>
+      <div class="cat-card fade-up">
+        <div class="cat-num">08 — Inner Life</div>
+        <div class="cat-title">Spirituality</div>
+        <div class="cat-desc">Mindfulness, values, purpose, and the inner life practices that keep you grounded in who you are and what matters — regardless of religious background.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHAPTERS -->
+<section class="chapters-section" id="chapters">
+  <div class="section-inner">
+    <p class="section-label fade-up">Inside the Book</p>
+    <h2 class="fade-up">Chapter by Chapter</h2>
+    <div class="chapters-list">
+      <div class="chapter-row fade-up">
+        <div class="chap-num">01</div>
+        <div>
+          <div class="chap-title">Health: The Non-Negotiable Foundation</div>
+          <div class="chap-desc">Sleep, movement, nutrition, and energy management. You can't hustle your way out of a sleep debt — and everything else in this book is built on top of this chapter.</div>
+        </div>
+        <div class="chap-tag">Foundation</div>
+      </div>
+      <div class="chapter-row fade-up">
+        <div class="chap-num">02</div>
+        <div>
+          <div class="chap-title">Professional: Work Like You Mean It</div>
+          <div class="chap-desc">Stop confusing being busy with being productive. Build daily work habits that move you forward, not just keep you occupied.</div>
+        </div>
+        <div class="chap-tag">Career</div>
+      </div>
+      <div class="chapter-row fade-up">
+        <div class="chap-num">03</div>
+        <div>
+          <div class="chap-title">Finance: Build the Foundation Before You Need It</div>
+          <div class="chap-desc">Budgeting basics, building savings routines, understanding debt, and developing a healthy money mindset before a crisis forces you to.</div>
+        </div>
+        <div class="chap-tag">Money</div>
+      </div>
+      <div class="chapter-row fade-up">
+        <div class="chap-num">04</div>
+        <div>
+          <div class="chap-title">Household: Your Environment Is Working For or Against You</div>
+          <div class="chap-desc">Your living environment either supports your goals or undermines them. Build the systems that make your home work for you.</div>
+        </div>
+        <div class="chap-tag">Environment</div>
+      </div>
+      <div class="chapter-row fade-up">
+        <div class="chap-num">05</div>
+        <div>
+          <div class="chap-title">Social / Friendships: The Lost Art of Showing Up</div>
+          <div class="chap-desc">Intentional relationship-building, maintaining real friendships as an adult, and setting limits with connections that drain your energy.</div>
+        </div>
+        <div class="chap-tag">Community</div>
+      </div>
+      <div class="chapter-row fade-up">
+        <div class="chap-num">06</div>
+        <div>
+          <div class="chap-title">Love & Family: The Relationships That Shape Everything</div>
+          <div class="chap-desc">How your closest connections affect your daily performance — and the habits that keep romantic and family relationships genuinely sustaining.</div>
+        </div>
+        <div class="chap-tag">Connection</div>
+      </div>
+      <div class="chapter-row fade-up">
+        <div class="chap-num">07</div>
+        <div>
+          <div class="chap-title">Creativity: You're More Creative Than You Think</div>
+          <div class="chap-desc">Why creative outlets matter even if you're not "a creative person," and how to build a practice that fuels energy and perspective.</div>
+        </div>
+        <div class="chap-tag">Expression</div>
+      </div>
+      <div class="chapter-row fade-up">
+        <div class="chap-num">08</div>
+        <div>
+          <div class="chap-title">Spirituality: The Practice of Coming Back to Yourself</div>
+          <div class="chap-desc">Mindfulness, purpose, values, and the daily practices that keep you grounded — regardless of religious background or tradition.</div>
+        </div>
+        <div class="chap-tag">Inner Life</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-section">
+  <div class="section-inner">
+    <p class="section-label fade-up">How It Works</p>
+    <h2 class="fade-up">Each Chapter.<br>Same Proven Structure.</h2>
+    <div class="steps-grid">
+      <div class="step fade-up">
+        <div class="step-num">1</div>
+        <div class="step-icon">🪝</div>
+        <h3>Opening Hook</h3>
+        <p>A relatable scenario or stat that immediately connects you to the reality of where most people actually are in this area of life.</p>
+      </div>
+      <div class="step fade-up">
+        <div class="step-num">2</div>
+        <div class="step-icon">📊</div>
+        <h3>Reality Check</h3>
+        <p>An honest assessment of where most young adults go wrong — not to shame, but to help you see clearly so you can fix it.</p>
+      </div>
+      <div class="step fade-up">
+        <div class="step-num">3</div>
+        <div class="step-icon">🧭</div>
+        <h3>The Routine Framework</h3>
+        <p>3–5 specific, actionable daily and weekly habits you can implement starting tomorrow. No perfect schedule required.</p>
+      </div>
+      <div class="step fade-up">
+        <div class="step-num">4</div>
+        <div class="step-icon">📏</div>
+        <h3>Your Baseline Score</h3>
+        <p>Rate yourself 1–10 and understand exactly what each range means. Honesty over flattery — that's how real growth starts.</p>
+      </div>
+      <div class="step fade-up">
+        <div class="step-num">5</div>
+        <div class="step-icon">🗓️</div>
+        <h3>The 30-Day Challenge</h3>
+        <p>A simple, specific starting point to build momentum. One habit. Thirty days. The compounding effect is real.</p>
+      </div>
+      <div class="step fade-up">
+        <div class="step-num">6</div>
+        <div class="step-icon">✅</div>
+        <h3>Chapter Recap</h3>
+        <p>Quick-reference summaries and action items so you always know what to do next, even on your busiest days.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- JOURNAL -->
+<section class="journal-section" id="journal">
+  <div class="section-inner">
+    <div class="journal-grid">
+      <div class="fade-up">
+        <p class="section-label">The Life Routine Journal</p>
+        <h2 style="margin-bottom:16px">Track Your Progress.<br>See the Wheel Spin.</h2>
+        <p style="color:rgba(255,255,255,0.8); font-size:16px; line-height:1.7; margin-bottom:8px;">The Life Routine Journal is where the real work happens. Designed to complement every chapter, it gives you the daily structure to turn reading into action.</p>
+        <div class="journal-features">
+          <div class="feature-item">
+            <div class="feature-dot"></div>
+            <div class="feature-text">
+              <h4>Life Routine Wheel Tracker</h4>
+              <p>Score yourself across all eight areas and watch your wheel evolve over time.</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-dot"></div>
+            <div class="feature-text">
+              <h4>Daily Habit Check-Ins</h4>
+              <p>Simple, structured daily prompts aligned to each life category.</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-dot"></div>
+            <div class="feature-text">
+              <h4>30-Day Challenge Pages</h4>
+              <p>Dedicated pages for each chapter's challenge so you can track streaks and reflect.</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-dot"></div>
+            <div class="feature-text">
+              <h4>Weekly & Monthly Reviews</h4>
+              <p>Structured reflection prompts to keep you accountable to your goals.</p>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:36px;">
+          <a href="#cta" class="btn-green">Get the Journal</a>
+        </div>
+      </div>
+      <div class="journal-mockup fade-up">
+        <h3>Life Routine Journal</h3>
+        <p class="jm-sub">Daily tracker — Week 1</p>
+        <div class="wheel-preview">
+          <div class="wheel-segment">Health<br><span style="font-size:16px;color:#3dba6f">7</span></div>
+          <div class="wheel-segment">Professional<br><span style="font-size:16px;color:#3dba6f">6</span></div>
+          <div class="wheel-segment">Finance<br><span style="font-size:16px;color:#1e2a6e">4</span></div>
+          <div class="wheel-segment">Household<br><span style="font-size:16px;color:#3dba6f">8</span></div>
+          <div class="wheel-segment">Social<br><span style="font-size:16px;color:#1e2a6e">5</span></div>
+          <div class="wheel-segment">Love &amp; Family<br><span style="font-size:16px;color:#3dba6f">7</span></div>
+          <div class="wheel-segment">Creativity<br><span style="font-size:16px;color:#1e2a6e">3</span></div>
+          <div class="wheel-segment">Spirituality<br><span style="font-size:16px;color:#3dba6f">6</span></div>
+        </div>
+        <p style="font-size:13px; color:#6b7280; margin-bottom:16px">Today's focus: <strong style="color:#1e2a6e">Finance — 30-Day Challenge Day 3</strong></p>
+        <div style="background:#f8f8f6; border-radius:6px; padding:16px; border-left:3px solid #3dba6f;">
+          <p style="font-size:13px; color:#3a3a4a; line-height:1.7;">"Track every expense today. No judgment — just data. The goal is clarity, not shame."</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AUTHOR -->
+<section class="author-section" id="author">
+  <div class="section-inner">
+    <div class="author-grid fade-up">
+      <div class="author-visual">📖</div>
+      <div>
+        <p class="section-label">About the Author</p>
+        <div class="author-name">Kristen M. Gough</div>
+        <div class="author-title">Author · Life Routine</div>
+        <div class="body-text">
+          <p>Kristen M. Gough wrote <em>Life Routine</em> for the person she once was — ambitious, motivated in bursts, but unable to make the pieces stick together consistently. She understands the gap between knowing what you should do and actually building the habits to do it.</p>
+          <p>Her approach is direct, practical, and grounded in the belief that structure is not the opposite of freedom — it is the precondition for it. <em>Life Routine</em> is the book she wished had existed when she was 22, figuring it all out.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="cta">
+  <p class="section-label fade-up" style="color:var(--green)">Ready to Start?</p>
+  <h2 class="fade-up">Structure Is the<br><em>Precondition</em><br>for Freedom</h2>
+  <p class="fade-up">Every habit you build is a small act of self-respect. A declaration that your life is worth the effort of designing it.</p>
+  <div class="cta-buttons fade-up">
+    <a href="#" class="btn-white">Get the Book</a>
+    <a href="#" class="btn-outline-white">Get the Journal</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo-wrap">
+    <div class="logo-mark footer-logo">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="45 45 315 485" height="96" style="display:block;"><g><g><path fill="#2E3192" d="M128.938,458.266c0.634,0.555,1.15,1.547,1.547,2.976h1.904v-21.009h-1.904c-0.396,1.429-0.913,2.421-1.547,2.976c-0.636,0.557-1.568,0.833-2.798,0.833H76.208v-61.598c0-1.229,0.277-2.172,0.833-2.827c0.555-0.654,1.548-1.16,2.976-1.518v-1.904H54.663v1.904c1.429,0.397,2.42,0.913,2.976,1.548s0.834,1.567,0.834,2.797v68.74c0,1.23-0.278,2.163-0.834,2.797c-0.556,0.635-1.547,1.151-2.976,1.548v1.904h71.478C127.37,457.433,128.303,457.711,128.938,458.266z"/><path fill="#2E3192" d="M166.254,455.529c-1.39-0.357-2.371-0.863-2.946-1.518c-0.575-0.655-0.862-1.597-0.862-2.827v-68.8c0-1.19,0.277-2.112,0.833-2.768c0.555-0.654,1.547-1.16,2.976-1.518v-1.904H140.9v1.904c1.429,0.397,2.42,0.913,2.976,1.548s0.834,1.547,0.834,2.737v68.8c0,1.23-0.278,2.163-0.834,2.797c-0.556,0.635-1.547,1.151-2.976,1.548v1.904h25.354V455.529z"/><path fill="#2E3192" d="M258.919,372.386h-1.904c-0.397,1.445-0.913,2.441-1.548,2.988s-1.547,0.82-2.737,0.82h-71.895v1.904c1.429,0.397,2.42,0.913,2.976,1.548s0.834,1.567,0.834,2.797v68.74c0,1.23-0.278,2.163-0.834,2.797c-0.556,0.635-1.547,1.151-2.976,1.548v1.904h25.354v-1.904c-1.39-0.357-2.371-0.863-2.946-1.518c-0.575-0.655-0.862-1.597-0.862-2.827v-29.281h32.911c1.229,0,2.162,0.282,2.798,0.846c0.634,0.564,1.15,1.552,1.547,2.963h1.904v-20.533h-1.904c-0.396,1.407-0.913,2.395-1.547,2.96c-0.636,0.566-1.568,0.85-2.798,0.85H202.38v-19.402h50.35c1.19,0,2.103,0.272,2.737,0.816s1.15,1.542,1.548,2.993h1.904V372.386z"/><path fill="#2E3192" d="M347.597,440.233c-0.397,1.429-0.914,2.421-1.548,2.976c-0.635,0.557-1.548,0.833-2.737,0.833h-52.255v-22.258h32.972c1.19,0,2.103,0.288,2.737,0.862c0.635,0.576,1.15,1.558,1.548,2.946h1.904V405.06h-1.904c-0.397,1.428-0.913,2.42-1.548,2.976s-1.547,0.833-2.737,0.833h-32.972v-19.283h50.826c1.19,0,2.103,0.283,2.737,0.847c0.635,0.564,1.15,1.552,1.548,2.963h1.904v-21.009h-1.904c-0.397,1.406-0.913,2.394-1.548,2.96s-1.547,0.849-2.737,0.849h-72.37v1.904c1.428,0.397,2.42,0.913,2.976,1.548c0.555,0.635,0.833,1.567,0.833,2.797v68.74c0,1.23-0.278,2.163-0.833,2.797c-0.556,0.635-1.548,1.151-2.976,1.548v1.904h73.799c1.189,0,2.103,0.277,2.737,0.833c0.634,0.555,1.15,1.547,1.548,2.976h1.904v-21.009H347.597z"/><path fill="#2E3192" d="M91.961,513.065l-7.625-10.848c7.117-1.094,10.676-4.844,10.676-11.251c0-1.88-0.355-3.645-1.065-5.295c-0.748-1.707-1.88-3.06-3.396-4.057c-1.305-0.863-2.834-1.468-4.589-1.813c-1.756-0.345-4.129-0.518-7.122-0.518H54.267v0.921c0.69,0.191,1.17,0.441,1.438,0.748s0.403,0.758,0.403,1.353v33.263c0,0.576-0.135,1.018-0.403,1.324s-0.748,0.557-1.438,0.748v0.921h12.258v-0.921c-0.672-0.173-1.146-0.417-1.424-0.733c-0.278-0.317-0.418-0.763-0.418-1.339v-13.034h10.485l7.954,11.567c0.9,1.323,1.351,2.158,1.351,2.503c0,0.537-0.488,0.883-1.465,1.036v0.921h14.19v-0.921c-0.902-0.058-1.664-0.359-2.288-0.906C94.287,516.187,93.304,514.965,91.961,513.065z M82.063,495.886c-0.806,0.115-2.187,0.173-4.144,0.173H64.683v-10.301h13.236c1.995,0,3.381,0.053,4.158,0.158s1.511,0.35,2.201,0.733c1.458,0.787,2.187,2.206,2.187,4.259s-0.729,3.472-2.187,4.259C83.606,495.532,82.868,495.771,82.063,495.886z"/><path fill="#2E3192" d="M122.765,478.594c-9.138,0.115-15.635,3.29-19.493,9.524c-2.016,3.261-3.023,6.857-3.023,10.79c0,2.686,0.489,5.247,1.469,7.683c1.113,2.763,2.745,5.132,4.895,7.107c4.012,3.702,9.415,5.554,16.211,5.554c9.06,0,15.576-3.185,19.55-9.554c2.035-3.261,3.052-6.771,3.052-10.531c0-6.138-2.121-11.145-6.362-15.021C135.049,480.445,129.617,478.594,122.765,478.594z M135.64,504.384c-0.787,1.916-1.92,3.536-3.398,4.858c-2.478,2.223-5.607,3.334-9.391,3.334s-6.923-1.111-9.419-3.334c-2.958-2.625-4.436-6.065-4.436-10.319s1.478-7.693,4.436-10.319c2.496-2.223,5.617-3.334,9.361-3.334c3.783,0.038,6.933,1.149,9.448,3.334c2.957,2.549,4.436,6.046,4.436,10.492C136.677,500.916,136.331,502.678,135.64,504.384z"/><path fill="#2E3192" d="M181.824,480.205c0.69,0.191,1.17,0.441,1.438,0.748s0.403,0.758,0.403,1.353V501.9c0,2.265-0.125,3.938-0.374,5.021c-0.25,1.084-0.71,1.99-1.382,2.72c-1.842,1.956-4.997,2.935-9.467,2.935c-4.45,0-7.597-0.979-9.438-2.935c-0.691-0.729-1.161-1.636-1.41-2.72c-0.25-1.083-0.374-2.757-0.374-5.021v-19.595c0-0.595,0.137-1.051,0.41-1.367s0.751-0.561,1.432-0.733v-0.921h-12.259v0.921c0.691,0.191,1.17,0.441,1.439,0.748c0.269,0.307,0.402,0.758,0.402,1.353v22.013c0,2.762,0.364,5.141,1.094,7.136c0.748,2.014,2.091,3.606,4.028,4.776c3.318,2.015,8.104,3.021,14.358,3.021c8.651,0,14.358-1.86,17.121-5.582c1.534-2.072,2.302-5.189,2.302-9.352v-22.013c0-0.595,0.134-1.046,0.403-1.353c0.268-0.307,0.748-0.557,1.438-0.748v-0.921h-11.567V480.205z"/><path fill="#2E3192" d="M233.819,478.887c-0.307,0.265-0.758,0.396-1.353,0.396h-32.946c-0.575,0-1.013-0.132-1.31-0.396c-0.298-0.265-0.552-0.746-0.763-1.445h-0.921v10.157h0.921c0.191-0.701,0.441-1.184,0.748-1.446c0.307-0.264,0.749-0.395,1.324-0.395h12.2v29.781c0,0.595-0.135,1.046-0.402,1.353c-0.27,0.307-0.749,0.557-1.439,0.748v0.921h12.258v-0.921c-0.69-0.191-1.17-0.441-1.438-0.748s-0.402-0.758-0.402-1.353v-29.781h12.171c0.595,0,1.046,0.131,1.353,0.395c0.307,0.263,0.557,0.745,0.748,1.446h0.921v-10.157h-0.921C234.376,478.141,234.126,478.623,233.819,478.887z"/><path fill="#2E3192" d="M239.401,480.205c0.691,0.191,1.17,0.441,1.439,0.748c0.269,0.307,0.402,0.748,0.402,1.323v33.264c0,0.595-0.134,1.046-0.402,1.353c-0.27,0.307-0.748,0.557-1.439,0.748v0.921h12.259v-0.921c-0.672-0.173-1.146-0.417-1.425-0.733c-0.278-0.317-0.417-0.772-0.417-1.367v-33.264c0-0.575,0.134-1.021,0.402-1.338s0.748-0.561,1.439-0.733v-0.921h-12.259V480.205z"/><path fill="#2E3192" d="M291.455,480.205c0.69,0.191,1.17,0.441,1.438,0.748s0.403,0.748,0.403,1.323v23.308l-21.668-22.53c-0.537-0.557-0.806-1.064-0.806-1.525c0-0.671,0.412-1.112,1.237-1.323v-0.921h-13.352v0.921c0.691,0.191,1.17,0.441,1.439,0.748c0.269,0.307,0.402,0.748,0.402,1.323v33.264c0,0.595-0.134,1.046-0.402,1.353c-0.27,0.307-0.748,0.557-1.439,0.748v0.921h11.539v-0.921c-0.69-0.191-1.17-0.441-1.438-0.748c-0.27-0.307-0.403-0.758-0.403-1.353v-23.883l22.013,22.731c0.939,0.96,1.41,1.631,1.41,2.015c0,0.652-0.403,1.064-1.209,1.237v0.921h12.373v-0.921c-0.69-0.191-1.17-0.441-1.438-0.748s-0.402-0.758-0.402-1.353v-33.264c0-0.575,0.134-1.017,0.402-1.323s0.748-0.557,1.438-0.748v-0.921h-11.538V480.205z"/><path fill="#2E3192" d="M347.076,511.684c-0.308,0.269-0.748,0.402-1.324,0.402h-25.264v-10.762h15.941c0.575,0,1.017,0.14,1.323,0.417c0.307,0.278,0.557,0.754,0.748,1.425h0.921v-9.928h-0.921c-0.191,0.691-0.441,1.171-0.748,1.439s-0.748,0.402-1.323,0.402h-15.941v-9.322h24.573c0.576,0,1.017,0.136,1.324,0.408c0.307,0.273,0.556,0.751,0.748,1.433h0.921v-10.157h-0.921c-0.192,0.681-0.441,1.157-0.748,1.432c-0.308,0.273-0.748,0.41-1.324,0.41h-34.989v0.921c0.69,0.191,1.17,0.441,1.438,0.748s0.402,0.758,0.402,1.353v33.234c0,0.595-0.134,1.046-0.402,1.353s-0.748,0.557-1.438,0.748v0.921h35.68c0.576,0,1.017,0.134,1.324,0.402c0.307,0.269,0.556,0.748,0.748,1.439h0.921v-10.158h-0.921C347.632,510.935,347.383,511.416,347.076,511.684z"/></g><polygon fill="#2E3192" points="302.728,54.665 171.543,54.665 133.383,54.665 124.455,54.665 124.455,282.041 171.543,282.041 171.543,101.753 302.728,101.753 302.728,178.721 196.096,178.721 196.096,225.737 302.728,225.737 302.728,349.721 349.743,349.721 349.743,227.681 324.327,202.265 349.743,176.777 349.743,101.753 349.743,54.665 "/><polygon fill="#00A651" points="232.959,247.481 232.959,302.633 101.775,302.633 101.775,54.665 54.759,54.665 54.759,302.633 54.759,349.721 101.775,349.721 232.959,349.721 272.991,349.721 280.047,349.721 280.047,247.481 "/></g></svg>
+    </div>
+  </div>
+  <div class="footer-copy">
+    <p>© 2026 Kristen M. Gough. All rights reserved.</p>
+    <p><a href="mailto:kristen@liferoutine.org" style="color:var(--green); text-decoration:none;">kristen@liferoutine.org</a></p>
+  </div>
+</footer>
+
+<script>
+  // Intersection observer for fade-up animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, 80 * (entry.target.dataset.delay || 0));
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.fade-up').forEach((el, i) => {
+    el.dataset.delay = i % 4;
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
