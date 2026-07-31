@@ -491,6 +491,20 @@
   .modal-success { display: none; }
   .modal-success.open { display: block; }
   .modal-success-title { font-size: 20px; font-weight: 900; color: var(--navy); margin-bottom: 8px; }
+
+  /* ── BOOK FORMAT MODAL ── */
+  .format-options { display: flex; flex-direction: column; gap: 12px; }
+  .format-option {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 22px; border: 2px solid var(--light-gray); border-radius: 6px;
+    text-decoration: none; color: var(--navy);
+    transition: border-color 0.2s, background 0.2s, transform 0.15s;
+  }
+  .format-option:hover { border-color: var(--navy); background: var(--off-white); transform: translateY(-2px); }
+  .format-name { font-weight: 700; font-size: 15px; }
+  .format-sub { display: block; font-size: 12px; font-weight: 500; color: var(--gray); margin-top: 2px; }
+  .format-arrow { color: var(--green); font-size: 20px; transition: transform 0.2s; }
+  .format-option:hover .format-arrow { transform: translateX(4px); }
 </style>
 </head>
 <body>
@@ -506,7 +520,7 @@
     <li><a href="#chapters">Chapters</a></li>
     <li><a href="#journal">Journal</a></li>
     <li><a href="#contact" id="contact-nav-link">Contact</a></li>
-    <li><a href="#cta" class="nav-cta">Get the Book</a></li>
+    <li><a href="#" class="nav-cta js-open-book">Get the Book</a></li>
   </ul>
 </nav>
 
@@ -521,7 +535,7 @@
       <p class="hero-sub fade-up">Motivation is unreliable. Systems always win. Life Routine gives you a straightforward, no-fluff framework for building daily habits across all eight areas of your life.</p>
       <p class="hero-author fade-up">By <span>Kristen M. Gough</span></p>
       <div class="btn-group fade-up">
-        <a href="#cta" class="btn-primary">Get the Book</a>
+        <a href="#" class="btn-primary js-open-book">Get the Book</a>
         <a href="#journal" class="btn-secondary">Get the Journal</a>
       </div>
     </div>
@@ -872,7 +886,7 @@
   <h2 class="fade-up">Structure Is the<br><em>Precondition</em><br>for Freedom</h2>
   <p class="fade-up">Every habit you build is a small act of self-respect. A declaration that your life is worth the effort of designing it.</p>
   <div class="cta-buttons fade-up">
-    <a href="#" class="btn-white">Get the Book</a>
+    <a href="#" class="btn-white js-open-book">Get the Book</a>
     <a href="#" class="btn-outline-white">Get the Journal</a>
   </div>
 </section>
@@ -917,6 +931,38 @@
     <div class="modal-success" id="contact-success" role="status">
       <p class="modal-success-title">Message sent</p>
       <p class="modal-sub">Thanks for reaching out — we'll get back to you soon.</p>
+    </div>
+  </div>
+</div>
+
+<!-- BOOK FORMAT MODAL -->
+<div class="modal-overlay" id="book-modal" aria-hidden="true">
+  <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="book-modal-title">
+    <button type="button" class="modal-close" id="book-modal-close" aria-label="Close">&times;</button>
+    <h3 id="book-modal-title">Get the Book</h3>
+    <p class="modal-sub">Choose your format. You'll be taken to Amazon to complete your purchase.</p>
+    <div class="format-options">
+      <a href="https://www.amazon.com/dp/B0HB28SRWR" target="_blank" rel="noopener" class="format-option">
+        <span>
+          <span class="format-name">Paperback</span>
+          <span class="format-sub">Softcover print edition</span>
+        </span>
+        <span class="format-arrow">&rarr;</span>
+      </a>
+      <a href="https://www.amazon.com/dp/B0HB2R94MM" target="_blank" rel="noopener" class="format-option">
+        <span>
+          <span class="format-name">Hardcover</span>
+          <span class="format-sub">Durable hardback edition</span>
+        </span>
+        <span class="format-arrow">&rarr;</span>
+      </a>
+      <a href="https://www.amazon.com/dp/B0HB2RP11Z" target="_blank" rel="noopener" class="format-option">
+        <span>
+          <span class="format-name">Ebook</span>
+          <span class="format-sub">Read instantly on Kindle</span>
+        </span>
+        <span class="format-arrow">&rarr;</span>
+      </a>
     </div>
   </div>
 </div>
@@ -979,6 +1025,31 @@
     } finally {
       contactSubmit.disabled = false;
     }
+  });
+
+  // Book format modal open/close
+  const bookModal = document.getElementById('book-modal');
+  const bookCloseBtn = document.getElementById('book-modal-close');
+
+  function openBookModal(e) {
+    if (e) e.preventDefault();
+    bookModal.classList.add('open');
+    bookModal.setAttribute('aria-hidden', 'false');
+  }
+  function closeBookModal() {
+    bookModal.classList.remove('open');
+    bookModal.setAttribute('aria-hidden', 'true');
+  }
+
+  document.querySelectorAll('.js-open-book').forEach((el) => {
+    el.addEventListener('click', openBookModal);
+  });
+  bookCloseBtn.addEventListener('click', closeBookModal);
+  bookModal.addEventListener('click', (e) => {
+    if (e.target === bookModal) closeBookModal();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && bookModal.classList.contains('open')) closeBookModal();
   });
 
   // Intersection observer for fade-up animations
