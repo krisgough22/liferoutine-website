@@ -488,6 +488,9 @@
   .modal-status { font-size: 13px; margin-top: 4px; min-height: 18px; }
   .modal-status.success { color: var(--green-dark); }
   .modal-status.error { color: #c0392b; }
+  .modal-success { display: none; }
+  .modal-success.open { display: block; }
+  .modal-success-title { font-size: 20px; font-weight: 900; color: var(--navy); margin-bottom: 8px; }
 </style>
 </head>
 <body>
@@ -911,6 +914,10 @@
       <button type="submit" id="contact-submit">Send Message</button>
       <p class="modal-status" id="contact-status" role="status"></p>
     </form>
+    <div class="modal-success" id="contact-success" role="status">
+      <p class="modal-success-title">Message sent</p>
+      <p class="modal-sub">Thanks for reaching out — we'll get back to you soon.</p>
+    </div>
   </div>
 </div>
 
@@ -922,6 +929,7 @@
   const contactForm = document.getElementById('contact-form');
   const contactStatus = document.getElementById('contact-status');
   const contactSubmit = document.getElementById('contact-submit');
+  const contactSuccess = document.getElementById('contact-success');
 
   function openContactModal(e) {
     if (e) e.preventDefault();
@@ -931,6 +939,11 @@
   function closeContactModal() {
     contactModal.classList.remove('open');
     contactModal.setAttribute('aria-hidden', 'true');
+    contactForm.style.display = '';
+    contactSuccess.classList.remove('open');
+    contactStatus.textContent = '';
+    contactStatus.className = 'modal-status';
+    contactForm.reset();
   }
 
   contactNavLink.addEventListener('click', openContactModal);
@@ -954,9 +967,9 @@
         body: new FormData(contactForm)
       });
       if (res.ok) {
-        contactStatus.textContent = 'Thanks! Your message has been sent.';
-        contactStatus.className = 'modal-status success';
         contactForm.reset();
+        contactForm.style.display = 'none';
+        contactSuccess.classList.add('open');
       } else {
         throw new Error('Request failed');
       }
