@@ -536,7 +536,7 @@
       <p class="hero-author fade-up">By <span>Kristen M. Gough</span></p>
       <div class="btn-group fade-up">
         <a href="#" class="btn-primary js-open-book">Get the Book</a>
-        <a href="#journal" class="btn-secondary">Get the Journal</a>
+        <a href="#" class="btn-secondary js-open-journal">Get the Journal</a>
       </div>
     </div>
     <div class="hero-visual fade-up">
@@ -837,7 +837,7 @@
           </div>
         </div>
         <div style="margin-top:36px;">
-          <a href="#cta" class="btn-green">Get the Journal</a>
+          <a href="#" class="btn-green js-open-journal">Get the Journal</a>
         </div>
       </div>
       <div class="journal-mockup fade-up">
@@ -887,7 +887,7 @@
   <p class="fade-up">Every habit you build is a small act of self-respect. A declaration that your life is worth the effort of designing it.</p>
   <div class="cta-buttons fade-up">
     <a href="#" class="btn-white js-open-book">Get the Book</a>
-    <a href="#" class="btn-outline-white">Get the Journal</a>
+    <a href="#" class="btn-outline-white js-open-journal">Get the Journal</a>
   </div>
 </section>
 
@@ -964,6 +964,15 @@
         <span class="format-arrow">&rarr;</span>
       </a>
     </div>
+  </div>
+</div>
+
+<!-- JOURNAL COMING SOON MODAL -->
+<div class="modal-overlay" id="journal-modal" aria-hidden="true">
+  <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="journal-modal-title">
+    <button type="button" class="modal-close" id="journal-modal-close" aria-label="Close">&times;</button>
+    <p class="modal-success-title" id="journal-modal-title">Coming Soon</p>
+    <p class="modal-sub">The Life Routine Journal isn't available yet, but it's on its way. Check back soon!</p>
   </div>
 </div>
 
@@ -1050,6 +1059,31 @@
   });
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && bookModal.classList.contains('open')) closeBookModal();
+  });
+
+  // Journal coming-soon modal open/close
+  const journalModal = document.getElementById('journal-modal');
+  const journalCloseBtn = document.getElementById('journal-modal-close');
+
+  function openJournalModal(e) {
+    if (e) e.preventDefault();
+    journalModal.classList.add('open');
+    journalModal.setAttribute('aria-hidden', 'false');
+  }
+  function closeJournalModal() {
+    journalModal.classList.remove('open');
+    journalModal.setAttribute('aria-hidden', 'true');
+  }
+
+  document.querySelectorAll('.js-open-journal').forEach((el) => {
+    el.addEventListener('click', openJournalModal);
+  });
+  journalCloseBtn.addEventListener('click', closeJournalModal);
+  journalModal.addEventListener('click', (e) => {
+    if (e.target === journalModal) closeJournalModal();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && journalModal.classList.contains('open')) closeJournalModal();
   });
 
   // Intersection observer for fade-up animations
